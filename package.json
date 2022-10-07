@@ -1,0 +1,19 @@
+{
+  "name": "cg-framework",
+  "version": "1.0.0",
+  "description": "Competence Group: Web Technologies - Ecosystems: JS Framework, Group 1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erikmoberg/cg-framework.git"
+  },
+  "author": "1337",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erikmoberg/cg-framework/issues"
+  },
+  "homepage": "https://github.com/erikmoberg/cg-framework#readme"
+}
