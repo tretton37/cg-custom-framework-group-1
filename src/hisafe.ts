@@ -1,3 +1,4 @@
-export default function hisafe(tagname: string, props, children) {
+export default function hisafe(tagname: string, props: any, children: any) {
     //
+
 }
