@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/erikmoberg/cg-framework#readme",
   "devDependencies": {
-    "tsc": "^2.0.4",
     "typescript": "^4.8.4"
   }
 }
