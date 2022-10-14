@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc --build tsconfig.json",
+    "serve": "serve public",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/erikmoberg/cg-framework#readme",
   "devDependencies": {
+    "serve": "^14.0.1",
     "typescript": "^4.8.4"
   }
 }
