@@ -1,6 +1,10 @@
-import hisafe from "./hisafe.js";
+import hisafe from './hisafe.js';
 export default function App() {
-  return <h1>Hello world</h1>;
+  return <div>
+    <h1>Hello world</h1>
+    <h2>Foo bar</h2>
+  </div>;
 }
 
-App();
+const app = App();
+document.getElementById('app')!.appendChild(app);
