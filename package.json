@@ -4,6 +4,7 @@
   "description": "Competence Group: Web Technologies - Ecosystems: JS Framework, Group 1",
   "main": "index.js",
   "scripts": {
+    "build": "tsc --build tsconfig.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
