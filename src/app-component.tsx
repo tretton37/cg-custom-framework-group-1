@@ -1,4 +1,5 @@
 import hisafe from './hisafe.js';
+import { TodoItem } from './todo-item.js';
 
 export class AppComponent extends HTMLElement {
   constructor() {
@@ -6,24 +7,35 @@ export class AppComponent extends HTMLElement {
     this.attachShadow({ mode: 'open' });
   }
 
-  handleClick() {
+  todoItems: TodoItem[] = [];
+
+  handleClick = () => {
     console.log('clicked it.');
+    this.todoItems.push({ 
+        isDone: false,
+        label: "Dummy"
+     });
+
+     this.render();
   }
 
   connectedCallback() {
+    this.render();
+  }
+
+  render() {
     const myElement = (
-      <div>
-        <h1 data-name="henrik">I am a web component!!!!!</h1>
-        <p>This is a p</p>
-        <ul>
-          <todo-item-component label="item1" />
-          <todo-item-component label="item2" />
-          <todo-item-component label="item3" />
-          <todo-item-component label="item4" />
-        </ul>
-        <button onClick={this.handleClick}>Click me!</button>
-      </div>
-    );
-    this.shadowRoot!.appendChild(myElement);
+        <div>
+          <h1 data-name="henrik">I am a web component!!!!!</h1>
+          <p>This is a p</p>
+          <ul>
+            { this.todoItems.map(x => <todo-item-component label={x.label} />) }
+          </ul>
+          <button onClick={this.handleClick}>Click me!</button>
+        </div>
+      );
+      
+      this.shadowRoot!.innerHTML = "";
+      this.shadowRoot!.appendChild(myElement);
   }
 }
