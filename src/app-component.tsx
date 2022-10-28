@@ -8,13 +8,13 @@ export class AppComponent extends HTMLElement {
 
     connectedCallback() {
         const myElement = <div>
-            <h1>I am a web component!!!!!</h1>
+            <h1 data-name="henrik">I am a web component!!!!!</h1>
             <p>This is a p</p>
             <ul>
-                <todo-item-component />
-                <todo-item-component />
-                <todo-item-component />
-                <todo-item-component />
+                <todo-item-component label="item1" />
+                <todo-item-component label="item2" />
+                <todo-item-component label="item3" />
+                <todo-item-component label="item4" />
             </ul>
             </div>
         this.shadowRoot!.appendChild(myElement);
