@@ -6,10 +6,17 @@ export default class TodoItemComponent extends HTMLElement {
     this.attachShadow({ mode: "open" });
   }
 
-  label: string = "TEST";
+  setLabel(val: string) {
+    this._label = val;
+  }
+
+  _label: string = "TEST";
+  set label(val: string) { 
+    this._label = val;
+  }
 
   connectedCallback() {
-    const myElement = <li>{this.label}</li>;
+    const myElement = <li>{this.getAttribute("label")}</li>;
     this.shadowRoot!.appendChild(myElement);
   }
 }

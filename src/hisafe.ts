@@ -5,6 +5,7 @@ export default function hisafe(tagname: string, props: any, ...children: any) {
     Object.entries(props).forEach(([key, val]) => {
       element.setAttribute(key, val as string);
       element[key] = val;
+      //(element as any).setLabel(val);
     });
   }
 
