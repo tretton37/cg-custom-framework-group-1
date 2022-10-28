@@ -1,9 +1,13 @@
-import hisafe from "./hisafe.js";
+import hisafe from './hisafe.js';
 
 export class AppComponent extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: "open" });
+    this.attachShadow({ mode: 'open' });
+  }
+
+  handleClick() {
+    console.log('clicked it.');
   }
 
   connectedCallback() {
@@ -17,10 +21,9 @@ export class AppComponent extends HTMLElement {
           <todo-item-component label="item3" />
           <todo-item-component label="item4" />
         </ul>
+        <button onClick={this.handleClick}>Click me!</button>
       </div>
     );
     this.shadowRoot!.appendChild(myElement);
   }
 }
-
-customElements.define("app-component", AppComponent);
