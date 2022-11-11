@@ -2,23 +2,23 @@ export abstract class HisafeElement<TState extends object> extends HTMLElement {
   constructor(defaultState: TState) {
     super();
     this.attachShadow({ mode: "open" });
-    this._state = defaultState;
+    this.state = defaultState;
+    
   }
 
-  _state: TState;
+  _state!: TState;
   set state(val: TState) {
-    const render = this.render
-    const proxy = new Proxy(val, {
-      set(target: TState, p: string | symbol, value: any, receiver: any): boolean {
-        target[p] = value
-        render()
-        return true
-      },
-      get(target: TState, p: string | symbol, receiver: any): any {
-        return target[p]
-      }
-    })
-    this._state = proxy;
+    const render = this.render;
+    this._state = new Proxy(val, {
+        set(target: TState, p: string | symbol, value: any, receiver: any): boolean {
+          target[p] = value
+          render();
+          return true
+        },
+        get(target: TState, p: string | symbol, receiver: any): any {
+          return target[p]
+        }
+      })
   }
   get state() {
     return this._state;
@@ -33,7 +33,7 @@ export abstract class HisafeElement<TState extends object> extends HTMLElement {
     this.dispatchEvent(event);
   }
 
-  private render() {
+  private render = ()=> {
     const html = this.html();
     this.shadowRoot!.innerHTML = "";
     this.shadowRoot!.appendChild(html);

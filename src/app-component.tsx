@@ -36,10 +36,9 @@ export class AppComponent extends HisafeElement<AppComponentState> {
       "name"
     ) as HTMLInputElement;
     this.state.todoItems = [...this.state.todoItems, {
-        isDone: false,
-        label: input.value,
-        id: Math.random().toString()
-    }]
+            isDone: false,
+            label: input.value,
+            id: Math.random().toString()
+        }]
   };
-
 }

@@ -21,7 +21,7 @@ export default function hisafe(tagname: string, props: any, ...children: any) {
 
   children.forEach((child) => {
     if (typeof child === 'string') {
-      element.innerText = child;
+      element.innerText += child;
     } else if (Array.isArray(child)) {
       element.append(...child)
     } else {

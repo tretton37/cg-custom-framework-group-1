@@ -9,11 +9,19 @@ export class TodoItemComponent extends HisafeElement<TodoItem> {
   }
 
   html(): Node {
-    const myElement = <li>{this.state.label}<button onClick={this.handleDelete}>X</button></li>;
+    const myElement = <li>
+      <input type="checkbox" onChange={this.handleCheckboxChanged} checked={this.state.isDone} />
+      <span style={this.state.isDone ? 'text-decoration:line-through' : ''}>{this.state.label}</span>
+      <button onClick={this.handleDelete}>X</button>
+    </li>;
     return myElement;
   }
 
   handleDelete = () => {
     this.dispatchHisafeEvent('deleteTodoItem', this.state.id)
   };
+
+  handleCheckboxChanged = () =>{
+    this.state.isDone = !this.state.isDone;
+  }
 }
