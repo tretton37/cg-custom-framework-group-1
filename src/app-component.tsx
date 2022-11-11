@@ -17,15 +17,18 @@ export class AppComponent extends HisafeElement<AppComponentState> {
         <h1 data-name="henrik">I am a web component!!!!!</h1>
         <p>This is a p</p>
         <input type="text" id="name" />
-        <button onclick={this.deleteItem}>X</button>
         <ul>
           {this.state.todoItems.map((todoItem) => (
-            <todo-item-component state={todoItem} />
+            <todo-item-component state={todoItem} onDeleteTodoItem={this.deleteItem} />
           ))}
         </ul>
         <button onClick={this.handleClick}>Click me!</button>
       </div>
     );
+  }
+
+  deleteItem = (e: CustomEvent) => {
+    console.log(e);
   }
 
   handleClick = () => {
@@ -36,13 +39,10 @@ export class AppComponent extends HisafeElement<AppComponentState> {
     this.state.todoItems.push({
       isDone: false,
       label: input.value,
+      id: Math.random().toString()
     });
 
     this.render();
   };
 
-  deleteItem = () => {
-    this.state.todoItems.pop();
-    this.render();
-  };
 }
