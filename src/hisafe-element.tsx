@@ -7,7 +7,18 @@ export abstract class HisafeElement<TState extends object> extends HTMLElement {
 
   _state: TState;
   set state(val: TState) {
-    this._state = val;
+    const render = this.render
+    const proxy = new Proxy(val, {
+      set(target: TState, p: string | symbol, value: any, receiver: any): boolean {
+        target[p] = value
+        render()
+        return true
+      },
+      get(target: TState, p: string | symbol, receiver: any): any {
+        return target[p]
+      }
+    })
+    this._state = proxy;
   }
   get state() {
     return this._state;
@@ -22,7 +33,7 @@ export abstract class HisafeElement<TState extends object> extends HTMLElement {
     this.dispatchEvent(event);
   }
 
-  render() {
+  private render() {
     const html = this.html();
     this.shadowRoot!.innerHTML = "";
     this.shadowRoot!.appendChild(html);

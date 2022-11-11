@@ -29,20 +29,17 @@ export class AppComponent extends HisafeElement<AppComponentState> {
 
   deleteItem = (id: string) => {
     this.state.todoItems = this.state.todoItems.filter(todoItem => todoItem.id !== id);
-    this.render();
   }
 
   handleClick = () => {
     const input: HTMLInputElement = this.shadowRoot!.getElementById(
       "name"
     ) as HTMLInputElement;
-    this.state.todoItems.push({
-      isDone: false,
-      label: input.value,
-      id: Math.random().toString()
-    });
-
-    this.render();
+    this.state.todoItems = [...this.state.todoItems, {
+        isDone: false,
+        label: input.value,
+        id: Math.random().toString()
+    }]
   };
 
 }
