@@ -17,6 +17,11 @@ export abstract class HisafeElement<TState extends object> extends HTMLElement {
     this.render();
   }
 
+  dispatchHisafeEvent<T>(name: string, payload: T) {
+    const event = new CustomEvent(name, { detail: payload, composed: true });
+    this.dispatchEvent(event);
+  }
+
   render() {
     const html = this.html();
     this.shadowRoot!.innerHTML = "";

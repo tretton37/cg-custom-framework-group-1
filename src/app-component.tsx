@@ -28,7 +28,8 @@ export class AppComponent extends HisafeElement<AppComponentState> {
   }
 
   deleteItem = (e: CustomEvent) => {
-    console.log(e);
+    this.state.todoItems = this.state.todoItems.filter(todoItem => todoItem.id !== e.detail);
+    this.render();
   }
 
   handleClick = () => {

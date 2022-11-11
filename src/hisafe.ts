@@ -4,7 +4,7 @@ export default function hisafe(tagname: string, props: any, ...children: any) {
   if (props) {
     Object.entries(props).forEach(([key, val]) => {
       if (key.startsWith('on')) {
-        const eventName = key.substring(2).toLowerCase();
+        const eventName = `${key.substring(2, 3).toLowerCase()}${key.substring(3)}`;
         element.addEventListener(eventName, val as any);
       } else {
         element.setAttribute(key, val as string);
