@@ -27,13 +27,12 @@ export class AppComponent extends HisafeElement<AppComponentState> {
     );
   }
 
-  deleteItem = (e: CustomEvent) => {
-    this.state.todoItems = this.state.todoItems.filter(todoItem => todoItem.id !== e.detail);
+  deleteItem = (id: string) => {
+    this.state.todoItems = this.state.todoItems.filter(todoItem => todoItem.id !== id);
     this.render();
   }
 
   handleClick = () => {
-    console.log("clicked it.");
     const input: HTMLInputElement = this.shadowRoot!.getElementById(
       "name"
     ) as HTMLInputElement;

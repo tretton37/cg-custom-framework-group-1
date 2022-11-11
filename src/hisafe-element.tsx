@@ -18,7 +18,7 @@ export abstract class HisafeElement<TState extends object> extends HTMLElement {
   }
 
   dispatchHisafeEvent<T>(name: string, payload: T) {
-    const event = new CustomEvent(name, { detail: payload, composed: true });
+    const event = new CustomEvent(name, { detail: { isHighSafeEvent: true, payload }, composed: true });
     this.dispatchEvent(event);
   }
 
