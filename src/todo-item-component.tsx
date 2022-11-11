@@ -1,21 +1,15 @@
+import { HisafeElement } from './hisafe-element.js';
 import hisafe from './hisafe.js';
+import { TodoItem } from './todo-item.js';
 
-export class TodoItemComponent extends HTMLElement {
+export class TodoItemComponent extends HisafeElement<TodoItem> {
+
   constructor() {
-    super();
-    this.attachShadow({ mode: 'open' });
+    super({label:'TEST', isDone:false});
   }
 
-  _label: string = 'TEST';
-  set label(val: string) {
-    this._label = val;
-  }
-  get label() {
-    return this._label;
-  }
-
-  connectedCallback() {
-    const myElement = <li>{this.label}</li>;
-    this.shadowRoot!.appendChild(myElement);
+  html(): Node {
+    const myElement = <li>{this.state.label}</li>;
+    return myElement;
   }
 }

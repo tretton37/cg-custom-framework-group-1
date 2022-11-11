@@ -33,7 +33,7 @@ export class AppComponent extends HTMLElement {
               <input type="text" id="name"/>
               <button onclick={this.deleteItem}>X</button>
               <ul>
-                  { this.todoItems.map(x => <todo-item-component label={x.label} />) }
+                  { this.todoItems.map(todoItem => <todo-item-component state={todoItem} />) }
               </ul>
               <button onClick={this.handleClick}>Click me!</button>
           </div>
