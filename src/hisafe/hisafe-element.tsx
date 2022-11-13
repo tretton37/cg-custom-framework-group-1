@@ -2,27 +2,36 @@ export abstract class HisafeElement<TState extends object> extends HTMLElement {
   constructor(defaultState: TState) {
     super();
     this.attachShadow({ mode: "open" });
-    this.state = defaultState;
+    this.state = this.state ?? defaultState;
   }
 
   _state!: TState;
   set state(val: TState) {
     const render = this.render;
-    this._state = new Proxy(val, {
-      set(
-        target: TState,
-        p: string | symbol,
-        value: any,
-        receiver: any
-      ): boolean {
-        target[p] = value;
-        render();
-        return true;
-      },
-      get(target: TState, p: string | symbol, receiver: any): any {
-        return target[p];
-      },
-    });
+    const createOnChangeProxy = (target) => {
+      return new Proxy(target, {
+          set(
+            target: TState,
+            p: string | symbol,
+            value: any,
+            receiver: any): boolean {
+              target[p] = value;
+              render();
+              return true;
+          },
+          get(target: TState, p: string | symbol, receiver: any): any {
+            const item = target[p];
+            if (item && typeof item === 'object') {
+                // create new proxy for nested object
+                return createOnChangeProxy(item);
+            }
+
+            return item;
+        },
+      });
+    }
+
+    this._state = createOnChangeProxy(val);
   }
   get state() {
     return this._state;

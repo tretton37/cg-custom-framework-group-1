@@ -1,15 +1,40 @@
-import { HisafeElement } from './hisafe-element.js';
-import hisafe from './hisafe.js';
+import { HisafeElement } from './hisafe/hisafe-element.js';
+import hisafe from './hisafe/hisafe.js';
 import { TodoItem } from './todo-item.js';
 import { colors, space, font } from './theme.js';
 
 class AppComponentState {
   todoItems: TodoItem[] = [];
+  isLoading = false;
 }
 
 export class AppComponent extends HisafeElement<AppComponentState> {
+  text = '';
+
   constructor() {
     super(new AppComponentState());
+  }
+
+  async connectedCallback() {
+    super.connectedCallback();
+    await this.loadItems();
+  }
+
+  async loadItems() {
+    this.state.isLoading = true;
+    // fake delay
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    this.state.isLoading = false;
+    const items = localStorage.getItem("todoItems");
+    if (items) {
+      try {
+        this.state.todoItems = JSON.parse(items);
+      } catch {}
+    }
+  }
+
+  storeItems() {
+    localStorage.setItem("todoItems", JSON.stringify(this.state.todoItems));
   }
 
   html(): Node {
@@ -22,15 +47,16 @@ export class AppComponent extends HisafeElement<AppComponentState> {
             <label for="todo-input" class="add-label">
               What needs to be done?
             </label>
-            <input type="text" id="todo-input" class="add-input" />
+            <input type="text" id="todo-input" class="add-input" onInput={this.handleTextChanged} />
             <input type="submit" value="Add" class="add-button" />
           </form>
-
+          { this.state.isLoading && <loading-spinner-component /> }
           <ul>
             {this.state.todoItems.map((todoItem) => (
               <todo-item-component
                 state={todoItem}
                 onDeleteTodoItem={this.deleteItem}
+                onToggleTodoItem={this.toggleTodoItem}
               />
             ))}
           </ul>
@@ -42,27 +68,35 @@ export class AppComponent extends HisafeElement<AppComponentState> {
   handleSubmit = (e: Event) => {
     e.preventDefault();
 
-    const input: HTMLInputElement = this.shadowRoot!.getElementById(
-      'todo-input'
-    ) as HTMLInputElement;
-    const label = input.value;
-
-    if (!label) {
+    if (!this.text) {
       return;
     }
 
     const newTodoItem: TodoItem = {
       isDone: false,
-      label,
+      label: this.text,
       id: Math.random().toString(),
     };
     this.state.todoItems = [...this.state.todoItems, newTodoItem];
+    this.storeItems();
+    this.text = '';
   };
+
+  handleTextChanged = (e: Event) => {
+    this.text = (e.target as HTMLInputElement).value;
+  }
 
   deleteItem = (id: string) => {
     this.state.todoItems = this.state.todoItems.filter(
       (todoItem) => todoItem.id !== id
     );
+    this.storeItems();
+  };
+
+  toggleTodoItem = (id: string) => {
+    const item = this.state.todoItems.filter((todoItem) => todoItem.id === id)[0];
+    item.isDone = !item.isDone;
+    this.storeItems();
   };
 
   css = () => {
@@ -173,6 +207,11 @@ export class AppComponent extends HisafeElement<AppComponentState> {
         list-style: none;
         display: grid;
         grid-template-columns: 1fr;
+      }
+
+      loading-spinner-component {
+        display: flex;
+        justify-content: center;
       }
     `;
   };

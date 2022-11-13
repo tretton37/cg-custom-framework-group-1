@@ -1,0 +1,14 @@
+<svg viewBox="0 0 32 32" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="32" height="32" r="4.571428571428571" rx="4.571428571428571" ry="4.571428571428571" fill="url('#myBackgroundGradient')"></rect>
+        <path fill="url('#myGradient')" stroke="none" d="M29.2 12.8c-0.267-0.533-0.667-0.8-1.2-0.8h-10.533l1.2-9.2c0.133-0.533-0.267-1.2-0.8-1.333-0.533-0.267-1.2-0.133-1.6 0.4l-13.333 16c-0.267 0.4-0.4 0.933-0.133 1.467 0.267 0.4 0.667 0.667 1.2 0.667h10.533l-1.2 9.2c-0.133 0.533 0.267 1.2 0.8 1.333 0.133 0.133 0.4 0.133 0.533 0.133 0.4 0 0.8-0.133 1.067-0.533l13.333-16c0.267-0.4 0.4-0.933 0.133-1.333zM16.533 24.933l0.8-6.133c0-0.4-0.133-0.8-0.267-1.067-0.267-0.267-0.667-0.4-1.067-0.4h-9.2l8.533-10.267-0.667 6.133c0 0.4 0.133 0.8 0.267 1.067 0.267 0.267 0.667 0.4 0.933 0.4h9.2l-8.533 10.267z" transform="scale(0.89)" transform-origin="center" style="transform-origin: center center;"></path>
+        <defs>
+            <linearGradient id="myBackgroundGradient" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stop-color="#0c0c91"></stop>
+                <stop offset="100%" stop-color="#0c0c91"></stop>
+            </linearGradient>
+            <linearGradient id="myGradient" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stop-color="#05e273"></stop>
+                <stop offset="100%" stop-color="#05e273"></stop>
+            </linearGradient>
+        </defs>
+    </svg>

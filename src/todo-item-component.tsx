@@ -1,5 +1,5 @@
-import { HisafeElement } from './hisafe-element.js';
-import hisafe from './hisafe.js';
+import { HisafeElement } from './hisafe/hisafe-element.js';
+import hisafe from './hisafe/hisafe.js';
 import { TodoItem } from './todo-item.js';
 import { colors, space, font } from './theme.js';
 
@@ -50,7 +50,7 @@ export class TodoItemComponent extends HisafeElement<TodoItem> {
   };
 
   handleCheckboxChanged = () => {
-    this.state.isDone = !this.state.isDone;
+    this.dispatchHisafeEvent('toggleTodoItem', this.state.id);
   };
 
   css = () => {
