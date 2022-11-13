@@ -1,21 +1,38 @@
-import hisafe from './hisafe.js';
+import { HisafeElement } from "./hisafe-element.js";
+import hisafe from "./hisafe.js";
+import { TodoItem } from "./todo-item.js";
 
-export class TodoItemComponent extends HTMLElement {
+export class TodoItemComponent extends HisafeElement<TodoItem> {
   constructor() {
-    super();
-    this.attachShadow({ mode: 'open' });
+    super({ label: "", isDone: false, id: "" });
   }
 
-  _label: string = 'TEST';
-  set label(val: string) {
-    this._label = val;
-  }
-  get label() {
-    return this._label;
+  css = () => {
+    return `.isDone {text-decoration:line-through}`;
+  };
+
+  html(): Node {
+    const myElement = (
+      <li>
+        <input
+          type="checkbox"
+          onChange={this.handleCheckboxChanged}
+          checked={this.state.isDone}
+        />
+        <span class={this.state.isDone ? "isDone" : ""}>
+          {this.state.label}
+        </span>
+        <button onClick={this.handleDelete}>X</button>
+      </li>
+    );
+    return myElement;
   }
 
-  connectedCallback() {
-    const myElement = <li>{this.label}</li>;
-    this.shadowRoot!.appendChild(myElement);
-  }
+  handleDelete = () => {
+    this.dispatchHisafeEvent("deleteTodoItem", this.state.id);
+  };
+
+  handleCheckboxChanged = () => {
+    this.state.isDone = !this.state.isDone;
+  };
 }

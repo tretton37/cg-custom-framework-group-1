@@ -4,19 +4,24 @@ export default function hisafe(tagname: string, props: any, ...children: any) {
   if (props) {
     Object.entries(props).forEach(([key, val]) => {
       if (key.startsWith('on')) {
-        const eventName = key.substring(2).toLowerCase();
-        element.addEventListener(eventName, val as any);
+        const eventName = `${key.substring(2, 3).toLowerCase()}${key.substring(3)}`;
+        element.addEventListener(eventName, (e) => {
+          if (e instanceof CustomEvent && e.detail?.isHighSafeEvent === true) {
+            (val as EventListener)(e.detail.payload);
+          } else {
+            (val as EventListener)(e);
+          }
+        });
       } else {
         element.setAttribute(key, val as string);
         element[key] = val;
-        //(element as any).setLabel(val);
       }
     });
   }
 
   children.forEach((child) => {
     if (typeof child === 'string') {
-      element.innerText = child;
+      element.innerText += child;
     } else if (Array.isArray(child)) {
       element.append(...child)
     } else {
