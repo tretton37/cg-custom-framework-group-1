@@ -1,7 +1,6 @@
 import { HisafeElement } from './hisafe/hisafe-element.js';
 import hisafe from './hisafe/hisafe.js';
 import { TodoItem } from './todo-item.js';
-import { colors, space, font } from './theme.js';
 
 class AppComponentState {
   todoItems: TodoItem[] = [];
@@ -15,28 +14,6 @@ export class AppComponent extends HisafeElement<AppComponentState> {
     super(new AppComponentState());
   }
 
-  async connectedCallback() {
-    super.connectedCallback();
-    await this.loadItems();
-  }
-
-  async loadItems() {
-    this.state.isLoading = true;
-    // fake delay
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    this.state.isLoading = false;
-    const items = localStorage.getItem("todoItems");
-    if (items) {
-      try {
-        this.state.todoItems = JSON.parse(items);
-      } catch {}
-    }
-  }
-
-  storeItems() {
-    localStorage.setItem("todoItems", JSON.stringify(this.state.todoItems));
-  }
-
   html(): Node {
     return (
       <main class="app">
@@ -47,10 +24,17 @@ export class AppComponent extends HisafeElement<AppComponentState> {
             <label for="todo-input" class="add-label">
               What needs to be done?
             </label>
-            <input type="text" id="todo-input" class="add-input" onInput={this.handleTextChanged} />
+            <input
+              type="text"
+              id="todo-input"
+              class="add-input"
+              onInput={this.handleTextChanged}
+            />
             <input type="submit" value="Add" class="add-button" />
           </form>
-          { this.state.isLoading && <loading-spinner-component /> }
+
+          {this.state.isLoading && <loading-spinner-component />}
+
           <ul>
             {this.state.todoItems.map((todoItem) => (
               <todo-item-component
@@ -63,6 +47,28 @@ export class AppComponent extends HisafeElement<AppComponentState> {
         </div>
       </main>
     );
+  }
+
+  async connectedCallback() {
+    super.connectedCallback();
+    await this.loadItems();
+  }
+
+  async loadItems() {
+    this.state.isLoading = true;
+    // fake delay
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    this.state.isLoading = false;
+    const items = localStorage.getItem('todoItems');
+    if (items) {
+      try {
+        this.state.todoItems = JSON.parse(items);
+      } catch {}
+    }
+  }
+
+  storeItems() {
+    localStorage.setItem('todoItems', JSON.stringify(this.state.todoItems));
   }
 
   handleSubmit = (e: Event) => {
@@ -84,7 +90,7 @@ export class AppComponent extends HisafeElement<AppComponentState> {
 
   handleTextChanged = (e: Event) => {
     this.text = (e.target as HTMLInputElement).value;
-  }
+  };
 
   deleteItem = (id: string) => {
     this.state.todoItems = this.state.todoItems.filter(
@@ -94,7 +100,9 @@ export class AppComponent extends HisafeElement<AppComponentState> {
   };
 
   toggleTodoItem = (id: string) => {
-    const item = this.state.todoItems.filter((todoItem) => todoItem.id === id)[0];
+    const item = this.state.todoItems.filter(
+      (todoItem) => todoItem.id === id
+    )[0];
     item.isDone = !item.isDone;
     this.storeItems();
   };
@@ -108,16 +116,18 @@ export class AppComponent extends HisafeElement<AppComponentState> {
       }
 
       h1, label, input {
-        font-family: ${font.family};
+        font-family: var(--font-family);
         font-display: block;
-        color: ${colors.text};
-        line-height: ${font.lineHeight};
+        color: var(--color-text);
+        line-height: var(--font-line-height);
       }
 
       .app {
-        background: ${colors.section};
+        --_app-space-y: var(--space-xl);
+        
+        background: var(--color-section);
         min-height: 100vh;
-        padding: ${space.xl}  ${space.l};
+        padding: var(--_app-space-y)  var(--space-l);
 
         display: flex;
         justify-content: center;
@@ -125,20 +135,21 @@ export class AppComponent extends HisafeElement<AppComponentState> {
       }
       
       .card {
-        background: ${colors.surface};
-        padding: ${space.xxl}  ${space.xl};
-        box-shadow: 0 ${space.xs}  ${space.s} rgb(0 0 0 / 16%);
+        background: var(--color-surface);
+        padding: var(--space-xxl)  var(--space-xl);
+        box-shadow: 0 var(--space-xs)  var(--space-s) rgb(0 0 0 / 16%);
         max-width: 35rem;
         width: 100%;
+        min-height: calc(100vh - var(--_app-space-y) * 2);
         
-        display: grid;
-        grid-template-rows: 1fr;
-        grid-gap: ${space.xxl};
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-xxl);
       }
 
       h1 {
-        color: ${colors.title};
-        font-size: ${font.size.l};
+        color: var(--color-title);
+        font-size: var(--font-size-l);
         font-weight: bold;
       }
 
@@ -147,44 +158,45 @@ export class AppComponent extends HisafeElement<AppComponentState> {
         grid-template: auto 3rem / minmax(10rem, 1fr) minmax(auto, 8rem);
         grid-template-areas: "label label"
           "input submit";
-        grid-gap: ${space.l};
+        grid-gap: var(--space-l);
       }
 
       .add-label {
         grid-area: label;
-        font-size: ${font.size.s};
+        font-size: var(--font-size-s);
         cursor: pointer;
       }
 
       .add-input {
         grid-area: input;
-        font-size: ${font.size.l};
+        font-size: var(--font-size-l);
         font-weight: bold;
-        padding: ${space.l};
-        background-color: ${colors.lightGray};
-        color: ${colors.input.text.default};
-        border: 0 solid ${colors.input.border.default};
-        border-bottom-width: ${space.s};
+        padding: var(--space-l);
+        background-color: var(--color-input-background);
+        color: var(--color-input-text);
+        border: 0 solid var(--color-input-border);
+        border-bottom-width: var(--space-s);
         outline: none;
         width: 100%;
         transition: all 0.2s ease-out;
-        transition-property: color, border-color;
+        transition-property: background-color, color, border-color;
       }
 
       .add-input:hover,
       .add-input:focus {
-        color: ${colors.input.text.hover};
-        border-color: ${colors.input.border.hover};
+        background-color: var(--color-input-background-hover);
+        color: var(--color-input-text-hover);
+        border-color: var(--color-input-border-hover);
       }
 
       .add-button {
         grid-area: submit;
         appearance: button;
         cursor: pointer;
-        font-size: ${font.size.s};
-        color: ${colors.button.text.default};
-        background-color: ${colors.button.background.default};
-        border: ${space.xs} solid ${colors.button.border.default};
+        font-size: var(--font-size-s);
+        color: var(--color-button-text);
+        background-color: var(--color-button-background);
+        border: var(--space-xs) solid var(--color-button-border);
         outline: 0;
         transition: all 0.2s ease-out;
         transition-property: background-color, color, border-color;
@@ -192,15 +204,15 @@ export class AppComponent extends HisafeElement<AppComponentState> {
 
       .add-button:hover,
       .add-button:focus {
-        background-color: ${colors.button.background.hover};
-        color: ${colors.button.text.hover};
-        border-color: ${colors.button.border.hover};
+        background-color: var(--color-button-background-hover);
+        color: var(--color-button-text-hover);
+        border-color: var(--color-button-border-hover);
       }
       
       .add-button:active {
-        background-color: ${colors.button.background.active};
-        color: ${colors.button.text.active};
-        border-color: ${colors.button.border.active};
+        background-color: var(--color-button-background-active);
+        color: var(--color-button-text-active);
+        border-color: var(--color-button-border-active);
       }      
 
       .list {

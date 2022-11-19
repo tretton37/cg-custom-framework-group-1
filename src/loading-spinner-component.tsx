@@ -1,6 +1,5 @@
 import { HisafeElement } from './hisafe/hisafe-element.js';
 import hisafe from './hisafe/hisafe.js';
-import { colors } from './theme.js';
 
 interface LoadingSpinnerState {}
 export class LoadingSpinnerComponent extends HisafeElement<LoadingSpinnerState> {
@@ -9,35 +8,101 @@ export class LoadingSpinnerComponent extends HisafeElement<LoadingSpinnerState> 
   }
 
   html(): Node {
-    return <div class="lds-dual-ring"></div>
+    return <div class="spinner"></div>;
   }
 
   css = () => {
     return `
-    .lds-dual-ring {
-      display: inline-block;
-      width: 80px;
-      height: 80px;
-    }
-    .lds-dual-ring:after {
-      content: " ";
-      display: block;
-      width: 64px;
-      height: 64px;
-      margin: 8px;
-      border-radius: 50%;
-      border: 6px solid ${colors.primary};
-      border-color: ${colors.primary} transparent ${colors.primary} transparent;
-      animation: lds-dual-ring 1.2s linear infinite;
-    }
-    @keyframes lds-dual-ring {
-      0% {
-        transform: rotate(0deg);
+      .spinner,
+      .spinner:before,
+      .spinner:after {
+        --_spinner-animation-duration: 2s;
+        --_spinner-animation-easing: cubic-bezier(0.65, 0, 0.35, 1);
+        
+        box-sizing: border-box;
       }
-      100% {
-        transform: rotate(360deg);
+      
+      .spinner {
+        width: var(--space-xl);
+        aspect-ratio: 1/1;
+        position: relative;
+        
+        opacity: 0;
+        animation: 
+          spin var(--_spinner-animation-duration) infinite var(--_spinner-animation-easing),
+          appear 0.5s 1 ease-out;
+        animation-fill-mode: forwards;
       }
-    }    
+
+      .spinner:before,
+      .spinner:after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: var(--space-xl);
+        aspect-ratio: 1/1;
+
+        animation: counter-spin var(--_spinner-animation-duration) infinite var(--_spinner-animation-easing);
+      }
+      
+      .spinner:before {
+        background-color: var(--color-primary);
+        top: 0;
+        left: 0;
+        translate: -50% -50%;
+      }
+      
+      .spinner:after {
+        background-color: var(--color-accent);
+        bottom: 0;
+        right: 0;
+        translate: 50% 50%;
+      }
+
+      @keyframes spin {
+        0% {
+          rotate: 0deg;
+        }
+        25% {
+          rotate: 90deg;
+        }
+        50% {
+          rotate: 180deg;
+        }
+        75% {
+          rotate: 270deg;
+        }
+        100% {
+          rotate: 360deg;
+        }
+      }
+
+      @keyframes counter-spin {
+        0% {
+          rotate: 0deg;
+        }
+        25% {
+          rotate: -180deg;
+        }
+        50% {
+          rotate: -360deg;
+        }
+        75% {
+          rotate: -540deg;
+        }
+        100% {
+          rotate: -720deg;
+        }
+      }
+      
+      @keyframes appear {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
     `;
   };
 }

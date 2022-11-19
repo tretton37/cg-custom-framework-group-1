@@ -1,0 +1,53 @@
+:root {
+  /* Typography */
+  --font-family: 'Sora', sans-serif;
+  --font-line-height: 1.2;
+  --font-size-s: 1rem;
+  --font-size-m: 1.5rem;
+  --font-size-l: 2rem;
+
+  /* Spacing */
+  --space-xxs: 1px;
+  --space-xs: 0.125rem;
+  --space-s: 0.25rem;
+  --space-m: 0.5rem;
+  --space-l: 1rem;
+  --space-xl: 2rem;
+  --space-xxl: 3rem;
+
+  /* Color palette */
+  --color-palette-white: #ffffff;
+  --color-palette-snow: #fff6fa;
+  --color-palette-light-gray: #ced4da;
+  --color-palette-gray: #6c757d;
+  --color-palette-cetacean-blue: #02023b;
+  --color-palette-dark-imperial-blue: #0a0a7b;
+  --color-palette-cadmium-blue: #0c0c91;
+  --color-palette-ceil: #9998d1;
+  --color-palette-guppie-green: #05e273;
+
+  /* Semantic colors */
+  --color-section: var(--color-palette-snow);
+  --color-surface: var(--color-palette-white);
+  --color-title: var(--color-palette-cadmium-blue);
+  --color-text: var(--color-palette-cetacean-blue);
+  --color-primary: var(--color-palette-cadmium-blue);
+  --color-accent: var(--color-palette-guppie-green);
+
+  --color-button-background: var(--color-palette-cadmium-blue);
+  --color-button-background-hover: var(--color-palette-dark-imperial-blue);
+  --color-button-background-active: var(--color-palette-dark-imperial-blue);
+  --color-button-text: var(--color-palette-guppie-green);
+  --color-button-text-hover: var(--color-palette-guppie-green);
+  --color-button-text-active: var(--color-palette-white);
+  --color-button-border: var(--color-palette-cadmium-blue);
+  --color-button-border-hover: var(--color-palette-dark-imperial-blue);
+  --color-button-border-active: var(--color-palette-cadmium-blue);
+
+  --color-input-background: var(--color-palette-light-gray);
+  --color-input-background-hover: var(--color-palette-light-gray);
+  --color-input-text: var(--color-palette-ceil);
+  --color-input-text-hover: var(--color-palette-cadmium-blue);
+  --color-input-border: var(--color-palette-ceil);
+  --color-input-border-hover: var(--color-palette-cadmium-blue);
+}

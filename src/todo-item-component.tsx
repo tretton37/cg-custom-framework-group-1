@@ -1,7 +1,6 @@
 import { HisafeElement } from './hisafe/hisafe-element.js';
 import hisafe from './hisafe/hisafe.js';
 import { TodoItem } from './todo-item.js';
-import { colors, space, font } from './theme.js';
 
 export class TodoItemComponent extends HisafeElement<TodoItem> {
   constructor() {
@@ -62,24 +61,24 @@ export class TodoItemComponent extends HisafeElement<TodoItem> {
       }
     
       label, button {
-        font-family: ${font.family};
+        font-family: var(--font-family);
         font-display: block;
-        color: ${colors.text};
-        line-height: ${font.lineHeight};
+        color: var(--color-text);
+        line-height: var(--font-line-height);
       }
 
       .item {
-        padding: ${space.m} 0;
+        padding: var(--space-m) 0;
         width: 100%;
         display: grid;
-        grid-template-columns: auto 1fr ${space.xl};
+        grid-template-columns: auto 1fr var(--space-xl);
         grid-gap: 1rem;
         align-items: center;
-        border-bottom: ${space.xxs}  solid ${colors.lightGray};
+        border-bottom: var(--space-xxs)  solid var(--color-palette-light-gray);
       }
 
       .checkbox {
-        border: ${space.xs} solid ${colors.lightGray};
+        border: var(--space-xs) solid var(--color-palette-light-gray);
         background-color: transparent;
         width: 1.5rem;
         aspect-ratio: 1/1;
@@ -96,7 +95,7 @@ export class TodoItemComponent extends HisafeElement<TodoItem> {
         transform: translate(-50%, -50%) rotate(45deg);
         border-color: transparent;
         border-style: solid;
-        border-width: 0 ${space.xs} ${space.xs} 0;
+        border-width: 0 var(--space-xs) var(--space-xs) 0;
         position: absolute;
         top: 46%;
         left: 50%;
@@ -105,11 +104,11 @@ export class TodoItemComponent extends HisafeElement<TodoItem> {
       }
 
       .done .checkbox {
-        background-color: ${colors.lightGray};
+        background-color: var(--color-palette-light-gray);
       }
 
       .done .checkbox:before {
-        border-color: ${colors.primary};
+        border-color: var(--color-primary);
       }
 
       .checkbox > input {
@@ -121,7 +120,7 @@ export class TodoItemComponent extends HisafeElement<TodoItem> {
       }
 
       .text {
-        font-size: ${font.size.m};
+        font-size: var(--font-size-m);
         cursor: pointer;
       }
 
@@ -132,9 +131,9 @@ export class TodoItemComponent extends HisafeElement<TodoItem> {
       .delete-button {
         appearance: none;
         aspect-ratio: 1/1;
-        font-size: ${font.size.m};
+        font-size: var(--font-size-m);
         cursor: pointer;
-        color: ${colors.gray};
+        color: var(--color-palette-gray);
         background: transparent;
         border: none;
         display: flex;
@@ -145,7 +144,7 @@ export class TodoItemComponent extends HisafeElement<TodoItem> {
 
       .delete-button:hover,
       .delete-button:focus {
-        color: ${colors.button.background.hover};
+        color: var(--color-button-background-hover);
       }
     `;
   };
