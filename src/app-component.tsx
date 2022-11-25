@@ -18,7 +18,7 @@ export class AppComponent extends HisafeElement<AppComponentState> {
     return (
       <main class="app">
         <div class="card">
-          <h1>ToDo-List</h1>
+          <h1>Todo-List</h1>
 
           <form onSubmit={this.handleSubmit} class="form">
             <label for="todo-input" class="add-label">
@@ -35,15 +35,17 @@ export class AppComponent extends HisafeElement<AppComponentState> {
 
           {this.state.isLoading && <loading-spinner-component />}
 
-          <ul>
-            {this.state.todoItems.map((todoItem) => (
-              <todo-item-component
-                state={todoItem}
-                onDeleteTodoItem={this.deleteItem}
-                onToggleTodoItem={this.toggleTodoItem}
-              />
-            ))}
-          </ul>
+          {!!this.state.todoItems.length && (
+            <ul>
+              {this.state.todoItems.map((todoItem) => (
+                <todo-item-component
+                  state={todoItem}
+                  onDeleteTodoItem={this.deleteItem}
+                  onToggleTodoItem={this.toggleTodoItem}
+                />
+              ))}
+            </ul>
+          )}
         </div>
       </main>
     );
