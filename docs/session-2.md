@@ -1,8 +1,8 @@
-# Welcome to session 2
+# Session 2: Components and the Web
 
 So far we were able to create an app component using JSX and parse it with `hisafe` function and finally append it into the body.
 
-### Web Components
+## Web Components
 The framework will be based around web components. You can read more about web component in this [link](https://developer.mozilla.org/en-US/docs/Web/Web_Components).
 
 Each component that we create will extend from `HTMLElement` class. The `connectedCallback` will be called when the component is going to be rendered.
@@ -109,7 +109,7 @@ export default function hisafe(tagname: string, props: any, ...children: any) {
 }
 ```
 
-### Some actions!
+## Some actions!
 Here we are going to add an input and button to create new todo item!
 The final version of `app-component` looks like this:
 

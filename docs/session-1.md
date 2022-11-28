@@ -1,4 +1,4 @@
-# Welcome to session 1
+# Session 1 - Make something that does Something
 
 **So first meet our team!**
 - Henrik Ljungdahl
@@ -8,7 +8,7 @@
 - Farhad Mehryari
 - Erik Moberg (lead)
 
-### Let's get started!
+## Let's get started!
 We choose `hisafe` as name of our framework (using the first letter of each of our names).
 
 As we decided to move with typescript, so first we need to install typescript package.
@@ -71,7 +71,7 @@ Tell typescript to parse JSX with hisafe function
 }
 ```
 
-### A simple web server is required to see what's going on in the browser.
+## A simple web server is required to see what's going on in the browser.
 Use `serve` package to create webserver.
 
 `npm install -g serve`
@@ -143,3 +143,5 @@ document.getElementById('app')!.appendChild(app);
 
 run `npm run build` now build files are generated and `app.js` script is included in `index.html` file.
 run `npm run serve` open the browser and see the result.
+
+And as it turns out, we now have something that does something!
