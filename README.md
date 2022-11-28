@@ -36,7 +36,7 @@ By using `hisafe` in your next project, you can ensure massive success, staying 
 
 ```
 npm init
-npm install erikmoberg/cg-framework
+npm install tretton37/cg-custom-framework-group-1
 npm install typescript --save-dev
 npm install serve --save-dev
 npm pkg set scripts.build=tsc
