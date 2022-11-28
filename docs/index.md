@@ -24,7 +24,7 @@
 - Support of contextual styling
 - Conditional rendering
 
-###Premium:
+### Premium:
 - Support for SVG in the JSX parsing (Good luck!)
 - Global state handling
 

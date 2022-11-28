@@ -1,14 +1,15 @@
-<h1 style="color: #0c0c91">Welcome to session-2</h1>
-So far we were able to create an app component using JSX and parse it with hisafe function and finally append it into the body.
+# Welcome to session 2
 
-### WebComponent
-You can read more about web component in this [link](https://developer.mozilla.org/en-US/docs/Web/Web_Components)
+So far we were able to create an app component using JSX and parse it with `hisafe` function and finally append it into the body.
+
+### Web Components
+The framework will be based around web components. You can read more about web component in this [link](https://developer.mozilla.org/en-US/docs/Web/Web_Components).
 
 Each component that we create will extend from `HTMLElement` class. The `connectedCallback` will be called when the component is going to be rendered.
 
-Here is todoItem component, the first step to have todo app.
+Here is the `TodoItemComponent`, the first step to have todo app.
 
-file: `src/todo-item-component.tsx`
+File: `src/todo-item-component.tsx`
 
 ```typescript jsx
 import hisafe from './hisafe.js';

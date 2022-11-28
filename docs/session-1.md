@@ -1,15 +1,15 @@
-<h1 style="color: #0c0c91">Welcome to session-1</h1>
+# Welcome to session 1
 
 **So first meet our team!**
-- Erik Moberg (lead)
-- Andre Brdoch
-- Farhad Mehryari
-- Simon Oskarsson
 - Henrik Ljungdahl
 - Ivan Tsud
+- Simon Oskarsson
+- Andre Brdoch
+- Farhad Mehryari
+- Erik Moberg (lead)
 
-###let's get started!
-we choose `hisafe` as name of our framework. (including first letters of our names)
+### Let's get started!
+We choose `hisafe` as name of our framework (using the first letter of each of our names).
 
 As we decided to move with typescript, so first we need to install typescript package.
 
