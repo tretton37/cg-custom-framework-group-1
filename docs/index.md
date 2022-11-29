@@ -30,9 +30,9 @@
 
 
 ## Here is the roadmap to create a new front-end framework
-### We had four 3-hour sessions.
+### We had four sessions:
 
 - #### [Session 1: Make Something That Does Something](session-1.md)
 - #### [Session 2: Components and the Web](session-2.md)
 - #### [Session 3: Refactoring and Reactivity](session-3.md)
-- #### [Session 4](session-4.md)
+- #### [Session 4: Conclusion](session-4.md)
