@@ -1,4 +1,4 @@
-# Session 3 - Refactoring and Reactivity
+# Session 3: Refactoring and Reactivity
 
 In the last session, we managed to combine JSX with web components. This gives us a basic foundation, but what we have built hardly qualifies as a framework. For example, the `render()` method sits in the component itself and needs to be called whenever a re-render is needed. We need to hide some of the complexity from the developer, and make it easier to develop components.
 
@@ -122,3 +122,5 @@ So basically, whenever a value is set on the state object, we simply call `rende
 ## Going out in Style
 
 Last step was to simply add a `css()` method in the base class. The method can be overridden by a component that needs to define custom styles. Since we are using web components, and also shadow DOM, almost all CSS will be isolated to the component by default.
+
+### On to [session 4!](session-4.md)

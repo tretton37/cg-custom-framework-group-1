@@ -1,4 +1,4 @@
-# Session 1 - Make something that does Something
+# Session 1 - Make Something That Does Something
 
 **So first meet our team!**
 - Henrik Ljungdahl
@@ -145,3 +145,5 @@ run `npm run build` now build files are generated and `app.js` script is include
 run `npm run serve` open the browser and see the result.
 
 And as it turns out, we now have something that does something!
+
+### On to [session 2!](session-2.md)

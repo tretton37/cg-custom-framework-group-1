@@ -190,3 +190,5 @@ Final version:
   <script src="build/bootstrapper.js" type="module"></script>
 </html>
 ```
+
+### On to [session 3!](session-3.md)
