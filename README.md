@@ -28,9 +28,7 @@ By using `hisafe` in your next project, you can ensure massive success, staying 
 - Strong typing with TypeScript
 - No dependencies, apart from TypeScript compiler
 
-# Moar docs
-
-Don't miss the whole story about the [creation of this framework](docs/index.md)!
+<img src="docs/static/images/final.apng">
 
 # Quick Start
 
@@ -163,3 +161,7 @@ handleSomething = (id: string) => {
 # Known bugs
 
 Yes.
+
+# Moar docs
+
+Don't miss the whole story about the [creation of this framework](docs/index.md)!
