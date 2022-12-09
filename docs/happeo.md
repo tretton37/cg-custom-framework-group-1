@@ -1,6 +1,6 @@
 # Rolling our own frontend JS framework
 
-Building a web frontend with a modern JavaScript framework can feel pretty much like magic. A quick set up, and then with just a few lines of code, you already have simple interactive app running in the browser. The frameworks enable us to focus on user experience and business value, by taking care of the low-level heavy lifting. Continue coding and not before long, you have built a blazingly fast, great looking, well-factored application (your mileage may vary). 
+Building a web frontend with a modern JavaScript framework can feel pretty much like magic. A quick set up, and then with just a few lines of code, you already have a simple interactive app running in the browser. The frameworks enable us to focus on user experience and business value, by taking care of the low-level heavy lifting. Continue coding and not before long, you have built a blazingly fast, great looking, well-factored application (your mileage may vary). 
 
 But have you ever thought about how such a framework - for example React or Angular - actually works? In this CG, we set out to explore the inner workings of a frontend framework, not by studying one, but by designing our own from the ground up. And it turned out that, yes - building a simple framework is quite possible, and with a limited scope, it can be done in a fairly short time.
 
@@ -19,11 +19,11 @@ Exactly how to design the framework was up to us. The first thing we did, of cou
 
 ## The mob sessions
 
-TODO, but something about:
-- mob programming
-- people with different backgrounds/experience/knowledge level working together
-- things that went well
-- things that went super bad
+A couple of the group members had experience of mob/pair programming, but it was new to most of us. At the beginning, the process was mainly propelled by a couple of members that took the lead, but as we tried to honor the guiding principles of mob programming (change driver every 10 minutes regardless of progress, the driver does what the mob says), more people got involved. Before we knew it, many of us were almost struggling to get our voices heard in the cacaphony of ideas and suggestions.
+
+The group was a mix of more backend- vs. more frontend oriented talents, and it felt like the mixed experiences from both worlds came into play as our new, groundbreaking JS framework took form. It was great to see that everyone in the group could and would contribute with their knowledge in the process, and we ended up with something that worked surprisingly well considering the fairly small amount of actual code. It taught us that a JS framework is not necessary at all the sorcery it may seem to be, but can instead be a few dozens line of code.
+
+The most difficult bit seemed to be to get started. Once the project plumbing was in place and there was an idea of how to proceed, the mob programming was fast, fun, and efficient. The initial decision making process and setting up of config files etc. didn't feel like the optimal task for a mob to take on. With that said, it is possible that the project would have taken an entirely different direction if the initial part would have been carried out in a different way.
 
 ## How it turned out
 
